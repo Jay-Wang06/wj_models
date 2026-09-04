@@ -1,0 +1,4 @@
+﻿video_demo/.venv/
+video_demo/bin/
+video_demo/**/__pycache__/
+video_demo/*.log

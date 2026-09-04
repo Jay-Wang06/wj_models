@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>视频下载助手</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div class="bg-decor" aria-hidden="true"></div>
+
+  <main class="container">
+    <header class="hero">
+      <div class="logo">▶</div>
+      <h1>视频下载助手</h1>
+      <p class="subtitle">粘贴视频网址，一键解析清晰度并下载到本地</p>
+    </header>
+
+    <!-- 状态横幅 -->
+    <div id="banner" class="banner hidden"></div>
+
+    <!-- 输入区 -->
+    <section class="card input-card">
+      <div class="input-row">
+        <input
+          id="url-input"
+          type="url"
+          placeholder="粘贴视频链接，例如 https://www.bilibili.com/video/BV..."
+          spellcheck="false"
+        />
+        <button id="parse-btn" class="btn btn-primary">解析</button>
+      </div>
+
+      <details class="advanced">
+        <summary>高级选项（代理 / B 站更高清晰度）</summary>
+        <div class="advanced-body">
+          <label class="field-label" for="sessdata">Bilibili SESSDATA（可选）</label>
+          <input
+            id="sessdata"
+            type="text"
+            placeholder="登录 B 站后在浏览器 Cookie 中复制 SESSDATA，可解锁 1080P/4K 等更高画质"
+            spellcheck="false"
+          />
+          <p class="hint">SESSDATA 仅保存在本机，不会上传到任何服务器。</p>
+          <label class="field-label" for="proxy">代理地址（可选）</label>
+          <input
+            id="proxy"
+            type="text"
+            placeholder="如 http://127.0.0.1:7890；B 站连接被重置时可配置代理绕过"
+            spellcheck="false"
+          />
+          <p class="hint">留空则使用环境变量 HTTPS_PROXY / VIDEODL_PROXY。</p>
+        </div>
+      </details>
+      <div class="input-row" style="margin-top: 12px">
+        <button id="diag-btn" class="btn btn-ghost btn-sm">网络诊断</button>
+        <span id="diag-summary" style="font-size: 12px; color: var(--text-dim); align-self: center"></span>
+      </div>
+    </section>
+
+    <!-- 解析中 -->
+    <section id="loading" class="card loading hidden">
+      <div class="spinner"></div>
+      <p id="loading-text">正在解析视频信息…</p>
+    </section>
+
+    <!-- 解析结果 -->
+    <section id="result" class="hidden">
+      <!-- 分P选择 -->
+      <div id="playlist-panel" class="hidden">
+        <div class="card">
+          <h2 class="section-title">这是一个合集，请选择要下载的分P</h2>
+          <div id="playlist" class="playlist"></div>
+        </div>
+      </div>
+
+      <!-- 视频信息 + 清晰度选项 -->
+      <div id="video-panel" class="hidden">
+        <div class="card video-card">
+          <div class="video-info">
+            <img id="thumb" class="thumb" alt="封面" />
+            <div class="video-meta">
+              <h2 id="video-title" class="video-title"></h2>
+              <div class="tags">
+                <span id="video-uploader" class="tag"></span>
+                <span id="video-duration" class="tag"></span>
+                <span id="video-views" class="tag"></span>
+                <span id="video-source" class="tag"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="options-header">
+            <h3>选择清晰度</h3>
+            <span id="ffmpeg-tip" class="tip hidden"></span>
+            <button id="install-ffmpeg-btn" class="btn btn-primary btn-sm hidden" style="margin-left:12px">下载 ffmpeg</button>
+            <span id="ffmpeg-progress" class="tip hidden" style="margin-left:8px"></span>
+          </div>
+          <div id="options" class="options"></div>
+
+          <div class="download-actions">
+            <button id="download-btn" class="btn btn-primary btn-lg" disabled>
+              开始下载
+            </button>
+            <span id="selection-summary" class="selection-summary"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 下载进度 -->
+      <div id="progress-panel" class="card progress-card hidden">
+        <div class="progress-head">
+          <h3>下载中</h3>
+          <span id="task-status" class="task-status"></span>
+        </div>
+        <div class="progress-track"><div id="progress-bar" class="progress-bar"></div></div>
+        <div class="progress-meta">
+          <span id="progress-pct"></span>
+          <span id="progress-size"></span>
+          <span id="progress-speed"></span>
+          <span id="progress-eta"></span>
+          <span id="progress-file" class="progress-file"></span>
+        </div>
+        <div class="done-actions hidden" id="done-actions">
+          <a id="download-file-btn" class="btn btn-primary">保存到本地</a>
+          <button id="open-folder-btn" class="btn btn-ghost">打开文件所在文件夹</button>
+        </div>
+        <div id="error-box" class="error-box hidden"></div>
+        <button id="cancel-btn" class="btn btn-ghost btn-sm hidden">取消下载</button>
+      </div>
+    </section>
+
+    <!-- 下载记录 -->
+    <section id="history" class="hidden">
+      <div class="card">
+        <h2 class="section-title">下载记录</h2>
+        <div id="history-list" class="history-list"></div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      本地运行 · 数据仅保存在你的电脑上 · <a href="/api/docs" target="_blank">API 文档</a>
+    </footer>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
