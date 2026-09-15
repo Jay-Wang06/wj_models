@@ -2,3 +2,8 @@
 video_demo/bin/
 video_demo/**/__pycache__/
 video_demo/*.log
+
+demo/.venv/
+demo/**/__pycache__/
+demo/*.log
+demo/data/

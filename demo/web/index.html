@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>网页剪藏器</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <div class="bg-decor" aria-hidden="true"></div>
+
+  <main class="container">
+    <header class="hero">
+      <div class="logo">✂</div>
+      <h1>网页剪藏器</h1>
+      <p class="subtitle">粘贴链接，抽取正文与图片，存为 Markdown / PDF，本地可搜</p>
+    </header>
+
+    <div id="banner" class="banner hidden"></div>
+
+    <section class="card input-card">
+      <div class="input-row">
+        <input
+          id="url-input"
+          type="url"
+          placeholder="粘贴文章链接，例如 https://..."
+          spellcheck="false"
+        />
+        <button id="preview-btn" class="btn btn-ghost">预览</button>
+        <button id="clip-btn" class="btn btn-primary">剪藏</button>
+      </div>
+      <details class="advanced">
+        <summary>高级选项（代理）</summary>
+        <div class="advanced-body">
+          <label class="field-label" for="proxy">代理地址（可选）</label>
+          <input
+            id="proxy"
+            type="text"
+            placeholder="如 http://127.0.0.1:7890"
+            spellcheck="false"
+          />
+        </div>
+      </details>
+    </section>
+
+    <section id="loading" class="card loading hidden">
+      <div class="spinner"></div>
+      <p id="loading-text">正在抽取正文…</p>
+    </section>
+
+    <section id="preview" class="card preview-card hidden">
+      <div class="preview-head">
+        <div>
+          <h2 id="preview-title" class="preview-title"></h2>
+          <div class="tags" id="preview-tags"></div>
+        </div>
+        <button id="save-preview-btn" class="btn btn-primary">确认剪藏</button>
+      </div>
+      <p id="preview-excerpt" class="excerpt"></p>
+      <pre id="preview-md" class="md-preview"></pre>
+    </section>
+
+    <section class="card library-card">
+      <div class="library-head">
+        <h2 class="section-title">我的剪藏</h2>
+        <div class="search-row">
+          <input id="search-input" type="search" placeholder="搜索标题、正文、站点…" />
+          <button id="search-btn" class="btn btn-ghost btn-sm">搜索</button>
+        </div>
+      </div>
+      <div id="clip-list" class="clip-list">
+        <p class="empty">暂无剪藏，粘贴上方链接开始</p>
+      </div>
+    </section>
+
+    <section id="reader" class="card reader-card hidden">
+      <div class="reader-head">
+        <button id="back-btn" class="btn btn-ghost btn-sm">← 返回列表</button>
+        <div class="reader-actions">
+          <a id="dl-md" class="btn btn-ghost btn-sm" href="#">下载 Markdown</a>
+          <a id="dl-pdf" class="btn btn-ghost btn-sm" href="#">下载 PDF</a>
+          <a id="open-source" class="btn btn-ghost btn-sm" href="#" target="_blank" rel="noopener">打开原文</a>
+          <button id="delete-btn" class="btn btn-danger btn-sm">删除</button>
+        </div>
+      </div>
+      <h2 id="reader-title" class="reader-title"></h2>
+      <div id="reader-meta" class="tags"></div>
+      <article id="reader-body" class="reader-body markdown-body"></article>
+    </section>
+
+    <footer class="footer">
+      本地运行 · 数据保存在 demo/data · <a href="/api/docs" target="_blank">API 文档</a>
+    </footer>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
