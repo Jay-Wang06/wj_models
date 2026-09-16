@@ -1,7 +1,13 @@
-﻿video_demo/.venv/
-video_demo/bin/
-video_demo/**/__pycache__/
-video_demo/*.log
+﻿video_dl/.venv/
+video_dl/bin/
+video_dl/**/__pycache__/
+video_dl/*.log
+video_dl/downloads/
+
+web_clipper/.venv/
+web_clipper/**/__pycache__/
+web_clipper/*.log
+web_clipper/data/
 
 demo/.venv/
 demo/**/__pycache__/

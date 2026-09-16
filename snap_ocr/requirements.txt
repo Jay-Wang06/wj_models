@@ -1,0 +1,8 @@
+fastapi>=0.110
+uvicorn[standard]>=0.29
+rapidocr>=3.0
+onnxruntime>=1.17
+Pillow>=10.0
+numpy>=1.26
+deep-translator>=1.11.4
+python-multipart>=0.0.9
