@@ -9,7 +9,14 @@ web_clipper/**/__pycache__/
 web_clipper/*.log
 web_clipper/data/
 
-demo/.venv/
-demo/**/__pycache__/
-demo/*.log
-demo/data/
+snap_ocr/.venv/
+snap_ocr/**/__pycache__/
+snap_ocr/*.log
+snap_ocr/data/
+
+local_notes/.venv/
+local_notes/**/__pycache__/
+local_notes/*.log
+local_notes/data/
+
+**/__pycache__/

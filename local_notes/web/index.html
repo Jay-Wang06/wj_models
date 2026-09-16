@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>本地笔记</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <div class="bg-decor" aria-hidden="true"></div>
+
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo">记</div>
+        <div>
+          <h1>本地笔记</h1>
+          <p class="sub">闪念 · Markdown · 全文搜索</p>
+        </div>
+      </div>
+
+      <div class="capture card-ish">
+        <label class="label" for="capture-input">粘贴即存</label>
+        <textarea
+          id="capture-input"
+          rows="3"
+          placeholder="粘贴 URL 存书签，或粘贴文字存闪念（Ctrl+Enter）"
+        ></textarea>
+        <div class="row">
+          <input id="capture-tags" type="text" placeholder="可选标签，逗号分隔" />
+          <button id="capture-btn" class="btn btn-primary btn-sm">保存</button>
+        </div>
+      </div>
+
+      <div class="search-box">
+        <input id="search-input" type="search" placeholder="搜索标题 / 正文 / 标签…" />
+      </div>
+
+      <div id="tag-cloud" class="tag-cloud"></div>
+
+      <div class="list-head">
+        <span id="list-count">0 篇</span>
+        <button id="new-btn" class="btn btn-ghost btn-sm">+ 新笔记</button>
+      </div>
+      <div id="note-list" class="note-list"></div>
+    </aside>
+
+    <main class="main">
+      <div id="banner" class="banner hidden"></div>
+
+      <section id="empty" class="empty-state">
+        <h2>选择或新建一篇笔记</h2>
+        <p>左侧可搜索、按标签筛选；上方支持粘贴 URL / 文字即存。</p>
+      </section>
+
+      <section id="editor" class="editor hidden">
+        <div class="editor-toolbar">
+          <input id="title-input" type="text" placeholder="标题" />
+          <select id="type-select">
+            <option value="note">笔记</option>
+            <option value="fleeting">闪念</option>
+            <option value="bookmark">书签</option>
+          </select>
+          <button id="preview-toggle" class="btn btn-ghost btn-sm">预览</button>
+          <button id="save-btn" class="btn btn-primary btn-sm">保存</button>
+          <button id="delete-btn" class="btn btn-danger btn-sm">删除</button>
+        </div>
+        <input id="tags-input" type="text" placeholder="标签（逗号或空格分隔），如：工作 灵感" />
+        <input id="url-input" type="url" placeholder="书签链接（可选）" class="hidden" />
+        <div class="editor-body">
+          <textarea id="body-input" placeholder="Markdown 正文…"></textarea>
+          <article id="preview" class="preview markdown-body hidden"></article>
+        </div>
+        <div id="meta-line" class="meta-line"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
