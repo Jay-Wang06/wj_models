@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>番茄钟 · 今日待办</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div class="bg-decor" aria-hidden="true"></div>
+
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">钟</div>
+        <div>
+          <h1>番茄钟 · 今日待办</h1>
+          <p class="sub" id="date-line">今日专注</p>
+        </div>
+      </div>
+      <div class="top-stats" aria-label="今日统计">
+        <div class="chip"><span>专注</span><strong id="stat-focus">0</strong></div>
+        <div class="chip"><span>分钟</span><strong id="stat-minutes">0</strong></div>
+        <div class="chip"><span>待办</span><strong id="stat-pending">0</strong></div>
+      </div>
+    </header>
+
+    <div id="banner" class="banner hidden" role="status"></div>
+
+    <div class="layout">
+      <section class="panel timer-panel">
+        <div class="mode-tabs" role="tablist">
+          <button type="button" class="mode-btn active" data-mode="focus">专注</button>
+          <button type="button" class="mode-btn" data-mode="short_break">短休</button>
+          <button type="button" class="mode-btn" data-mode="long_break">长休</button>
+        </div>
+
+        <div class="ring-wrap">
+          <svg class="ring" viewBox="0 0 120 120" aria-hidden="true">
+            <circle class="ring-bg" cx="60" cy="60" r="52" />
+            <circle id="ring-fg" class="ring-fg" cx="60" cy="60" r="52" />
+          </svg>
+          <div class="ring-center">
+            <div id="time-display" class="time">25:00</div>
+            <div id="phase-label" class="phase">专注中待命</div>
+          </div>
+        </div>
+
+        <div class="timer-actions">
+          <button id="start-btn" class="btn btn-primary" type="button">开始</button>
+          <button id="reset-btn" class="btn btn-ghost" type="button">重置</button>
+        </div>
+
+        <div class="active-todo">
+          <label for="focus-todo">本次关联待办</label>
+          <select id="focus-todo">
+            <option value="">不关联</option>
+          </select>
+        </div>
+
+        <details class="settings">
+          <summary>时长设置</summary>
+          <div class="settings-grid">
+            <label>专注（分）<input id="set-focus" type="number" min="1" max="180" /></label>
+            <label>短休（分）<input id="set-short" type="number" min="1" max="180" /></label>
+            <label>长休（分）<input id="set-long" type="number" min="1" max="180" /></label>
+            <label>每 N 次长休<input id="set-every" type="number" min="1" max="12" /></label>
+          </div>
+          <button id="save-settings" class="btn btn-ghost btn-sm" type="button">保存设置</button>
+        </details>
+      </section>
+
+      <section class="panel todo-panel">
+        <div class="todo-head">
+          <h2>今日待办</h2>
+          <button id="clear-done-btn" class="btn btn-ghost btn-sm" type="button">清除已完成</button>
+        </div>
+
+        <form id="todo-form" class="todo-form">
+          <input id="todo-input" type="text" maxlength="500" placeholder="写下今天要做的事，Enter 添加" autocomplete="off" />
+          <button class="btn btn-primary" type="submit">添加</button>
+        </form>
+
+        <div id="todo-list" class="todo-list"></div>
+        <p id="todo-empty" class="empty hidden">还没有待办，先加一条吧。</p>
+      </section>
+    </div>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

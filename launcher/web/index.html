@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>wj_models · 启动台</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div class="bg-decor" aria-hidden="true"></div>
+
+  <main class="shell">
+    <header class="hero">
+      <div class="brand-mark">台</div>
+      <div class="hero-text">
+        <p class="eyebrow">wj_models</p>
+        <h1>统一启动台</h1>
+        <p class="subtitle">查看状态 · 一键启停 · 打开本地小工具</p>
+      </div>
+      <div class="hero-actions">
+        <button id="refresh-btn" class="btn btn-ghost" type="button">刷新</button>
+        <button id="start-all-btn" class="btn btn-primary" type="button">全部启动</button>
+      </div>
+    </header>
+
+    <div id="banner" class="banner hidden" role="status"></div>
+
+    <section class="stats" aria-label="概览">
+      <div class="stat">
+        <span class="stat-label">在线</span>
+        <strong id="stat-online">–</strong>
+      </div>
+      <div class="stat">
+        <span class="stat-label">工具总数</span>
+        <strong id="stat-total">–</strong>
+      </div>
+      <div class="stat">
+        <span class="stat-label">本页端口</span>
+        <strong>8764</strong>
+      </div>
+    </section>
+
+    <section id="tool-grid" class="tool-grid" aria-live="polite"></section>
+
+    <footer class="foot">
+      <p>首次启动某个工具时，会弹出独立控制台窗口（可能需要安装依赖，稍等片刻）。</p>
+      <p>数据与服务均在本机；停止只会结束对应端口的进程。</p>
+    </footer>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

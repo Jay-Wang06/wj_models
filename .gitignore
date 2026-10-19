@@ -20,3 +20,10 @@ local_notes/*.log
 local_notes/data/
 
 **/__pycache__/
+launcher/.venv/
+launcher/**/__pycache__/
+launcher/*.log
+focus_todo/.venv/
+focus_todo/**/__pycache__/
+focus_todo/*.log
+focus_todo/data/
